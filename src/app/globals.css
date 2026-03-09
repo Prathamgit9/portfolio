@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #07070a;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-strong: rgba(255, 255, 255, 0.1);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --faint: rgba(255, 255, 255, 0.5);
+  --stroke: rgba(255, 255, 255, 0.12);
+  --stroke-strong: rgba(255, 255, 255, 0.2);
+  --shadow: rgba(0, 0, 0, 0.65);
+  --accent: #8b5cf6; /* violet */
+  --accent2: #06b6d4; /* cyan */
+  --accent3: #f97316; /* orange */
+}
+
+@theme inline {
+  --color-background: var(--bg);
+  --color-foreground: var(--text);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: radial-gradient(
+      1200px 800px at 20% 10%,
+      color-mix(in oklab, var(--accent) 38%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 700px at 80% 30%,
+      color-mix(in oklab, var(--accent2) 22%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      900px 700px at 60% 90%,
+      color-mix(in oklab, var(--accent3) 12%, transparent),
+      transparent 60%
+    ),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  cursor: none; /* Hide default for custom cursor */
+}
+
+@layer base {
+  ::selection {
+    background: color-mix(in oklab, var(--accent) 40%, transparent);
+  }
+}
+
+@layer utilities {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .glass {
+    background: var(--panel);
+    border: 1px solid var(--stroke);
+    box-shadow: 0 24px 60px var(--shadow);
+    backdrop-filter: blur(10px);
+  }
+
+  .glass-strong {
+    background: var(--panel-strong);
+    border: 1px solid var(--stroke-strong);
+    box-shadow: 0 28px 80px var(--shadow);
+    backdrop-filter: blur(14px);
+  }
+
+  .text-gradient {
+    background: linear-gradient(
+      90deg,
+      color-mix(in oklab, var(--accent) 85%, white),
+      color-mix(in oklab, var(--accent2) 70%, white)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .grid-fade {
+    background-image: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.06) 1px,
+        transparent 1px
+      );
+    background-size: 72px 72px;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 45%, transparent 70%);
+  }
+}
